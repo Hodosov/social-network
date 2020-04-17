@@ -5,20 +5,22 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import { App } from './App';
+import { Provider } from './StoreContext';
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} />
+            <Provider store={store}>
+                <App />
+            </Provider>
         </BrowserRouter>,
         document.getElementById('root'));
 }
 
-rerenderEntireTree(store.getState())
+rerenderEntireTree()
 
 store.subscribe(() => {
-    let state = store.getState()
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 })
 
 serviceWorker.unregister();

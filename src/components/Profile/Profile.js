@@ -12,7 +12,7 @@ export const Profile = (props) => {
     return (
         <Content>
             <Profileinfo />
-            <MypostsContainer store={props.store} />
+            <MypostsContainer />
         </Content>
     )
 }

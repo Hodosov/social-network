@@ -1,23 +1,30 @@
 import React from 'react'
-import { addNewMassageAcrionCreator, updateNewMassageTextCreator} from '../../redux/Dialogs-reducer'
+import { addNewMassageAcrionCreator, updateNewMassageTextCreator } from '../../redux/Dialogs-reducer'
 import { Dialogs } from './Dialogs';
+import StoreContext from '../../StoreContext';
 
-export const DialogsContainer = (props) => {
-
-    let state = props.store.getState().dialogsPage
-
-    let addMassage = () => {
-    props.store.dispatch(addNewMassageAcrionCreator());
-    }
-    let onChangeMassage = (message) => {
-        props.store.dispatch(updateNewMassageTextCreator(message))
-    }
-
+export const DialogsContainer = () => {
     return (
-        <Dialogs 
-        updateMessage={onChangeMassage}
-        addNewMessage={addMassage}
-        dialogsPage={state}
-        />
+        <StoreContext.Consumer>
+            {store => {
+
+                let state = store.getState().dialogsPage
+
+                let addMassage = () => {
+                    store.dispatch(addNewMassageAcrionCreator());
+                }
+                let onChangeMassage = (message) => {
+                    store.dispatch(updateNewMassageTextCreator(message))
+                }
+
+                return (
+                    <Dialogs
+                        updateMessage={onChangeMassage}
+                        addNewMessage={addMassage}
+                        dialogsPage={state}
+                    />
+                )
+            }}
+        </StoreContext.Consumer>
     )
 }

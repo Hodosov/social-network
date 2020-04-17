@@ -23,16 +23,14 @@ const AppWrapper = styled.div`
     width: 1400px;
 `
 
-export const App = (props) => {
+export const App = () => {
     return (
         <Body>
             <AppWrapper>
                 <Header />
                 <Navabr />
-                <Route path='/profile' render={() => <Profile
-                    store={props.store} />} />
-                <Route path='/dialogs' render={() => <DialogsContainer
-                    store={props.store} />} />
+                <Route path='/profile' render={() => <Profile />} />
+                <Route path='/dialogs' render={() => <DialogsContainer />} />
             </AppWrapper>
         </Body>
     );
