@@ -48,23 +48,23 @@ const Massage = (props) => {
     )
 }
 
-
-
-
 export const Dialogs = (props) => {
 
-    let dialogs = props.state.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
+    let state = props.dialogsPage
 
-    let massages = props.state.massages.map(el => <Massage key={el.id} massage={el.massage} />)
+    let dialogs = state.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
+
+    let massages = state.massages.map(el => <Massage key={el.id} massage={el.massage} />)
 
     let newMassageElement = React.createRef()
 
     let addMassage = () => {
-    props.dispatch(addNewMassageAcrionCreator());
+        props.addNewMessage()
     }
     let onChangeMassage = () => {
         let message = newMassageElement.current.value
-        props.dispatch(updateNewMassageTextCreator(message))
+        props.updateMessage(message)
+        
     }
 
 
@@ -79,7 +79,7 @@ export const Dialogs = (props) => {
                 <Textrea
                 onChange={onChangeMassage}
                 ref={newMassageElement}
-                value={props.state.newMassageText}
+                value={state.newMassageText}
                 placeholder='введите сообщение'
                 ></Textrea>
                 <button

@@ -27,7 +27,6 @@ export const Myposts = (props) => {
     let onPostChange = () =>{
         let text = newPOstElement.current.value
         props.updataNewpostText(text)
-        // props.dispatch(updateNewPostTextActionCreator(text))
     }
 
     return (

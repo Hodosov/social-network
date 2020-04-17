@@ -1,6 +1,3 @@
-import { store } from './store'
-
-
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UODATE-NEW-POST-TEXT'
 
@@ -26,7 +23,7 @@ export const profileReducer = (state = initialState, action) => {
             like: 6
         }
         if(newPost.massage == ''){
-            alert('вы не можете отправить пустое')
+            alert('вы не можете отправить пустое сообщение')
         } 
         else {
                   state.posts.push(newPost)

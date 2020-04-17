@@ -5,13 +5,16 @@ import { Myposts } from './Myposts';
 
 
 export const MypostsContainer = (props) => {
+
+    let state = props.store.getState()
+
     let addPost = () => {
-        props.dispatch(addPostActionCreator())
+        props.store.dispatch(addPostActionCreator())
     } 
 
     let onPostChange = (text) =>{
        let action = updateNewPostTextActionCreator(text)
-        props.dispatch(action)
+        props.store.dispatch(action)
     }
 
 
@@ -20,8 +23,8 @@ export const MypostsContainer = (props) => {
         <Myposts 
         updataNewpostText={ onPostChange } 
         addPost={ addPost } 
-        posts={props.posts}
-        newPostText={props.newPostText} />
+        posts={state.profilePage.posts}
+        newPostText={state.profilePage.newPostText} />
         
     )
 }

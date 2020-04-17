@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Header from './components/Header/Header'
 import { Navabr } from './components/Navbar/Navbar';
 import { Profile } from './components/Profile/Profile';
-import { Dialogs } from './components/Dialogs/Dialogs';
+import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { Route } from 'react-router-dom';
 
 const Body = styled.div`
@@ -30,12 +30,9 @@ export const App = (props) => {
                 <Header />
                 <Navabr />
                 <Route path='/profile' render={() => <Profile
-                    state={props.state.profile}
-                    dispatch={props.dispatch}
-                />} />
-                <Route path='/dialogs' render={() => <Dialogs
-                    state={props.state.dialogs}
-                    dispatch={props.dispatch} />} />
+                    store={props.store} />} />
+                <Route path='/dialogs' render={() => <DialogsContainer
+                    store={props.store} />} />
             </AppWrapper>
         </Body>
     );

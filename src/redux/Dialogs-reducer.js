@@ -1,5 +1,3 @@
-import { store } from './store'
-
 const ADD_NEW_MASSAGE = 'ADD_NEW_MASSAGE'
 const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEX'
 
@@ -34,7 +32,7 @@ export const dialogReducer = (state = initState, action) => {
                 massage: state.newMassageText
             }
             if (newMassage.massage === '') {
-                alert('aaaaa')
+                alert('Введите сообщение')
             } else {
                 state.massages.push(newMassage)
                 state.newMassageText = ''

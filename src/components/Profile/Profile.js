@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Myposts } from './Myposts/Myposts'
 import { Profileinfo } from './Profileinfo/Profileinfo';
 import { MypostsContainer } from '../Profile/Myposts/MypostsContainer'
 
@@ -13,11 +12,7 @@ export const Profile = (props) => {
     return (
         <Content>
             <Profileinfo />
-            <MypostsContainer 
-            posts={props.state.posts} 
-            dispatch={props.dispatch} 
-            newPostText={props.state.newPostText} 
-            />
+            <MypostsContainer store={props.store} />
         </Content>
     )
 }
