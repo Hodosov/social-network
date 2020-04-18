@@ -22,9 +22,7 @@ let initState = {
 }
 
 export const dialogReducer = (state = initState, action) => {
-
     switch (action.type) {
-
         case (ADD_NEW_MASSAGE):
 
             let newMassage = {
@@ -34,19 +32,18 @@ export const dialogReducer = (state = initState, action) => {
             if (newMassage.massage === '') {
                 alert('Введите сообщение')
             } else {
-                let StateCopy = { ...state}
-                StateCopy.massages = [ ...state.massages ]
-                StateCopy.massages.push(newMassage)
-                StateCopy.newMassageText = ''
-                return StateCopy
+                return { 
+                    ...state,
+                    newMassageText: '',
+                    massages: [ ...state.massages, newMassage ],
+                }
             }
 
-
         case (UPDATE_NEW_MASSAGE_TEXT):
-            let StateCopy = { ...state}
-            StateCopy.newMassageText = action.newMassageText
-            return StateCopy
-
+            return ({ 
+                ...state,
+                newMassageText: action.newMassageText
+            })
         default: return state
     }
 }

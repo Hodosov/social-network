@@ -11,37 +11,36 @@ let initialState = {
         { id: 6, massage: 'Go hoome', like: 5 },
         { id: 7, massage: 'Working REACT', like: 15 },
     ],
-    newPostText: 'it-kamasutra'
+    newPostText: 'Send post'
 }
 
 export const profileReducer = (state = initialState, action) => {
-    if (action.type === ADD_POST) {
-
-        let newPost = {
-            id: 8,
-            massage: state.newPostText,
-            like: 6
-        }
-        if (newPost.massage == '') {
-            alert('вы не можете отправить пустое сообщение')
-        }
-        else {
-            let StateCopy = { ...state}
-            StateCopy.posts = [ ...state.posts]
-            StateCopy.posts.push(newPost)
-            StateCopy.newPostText = ''
-            return StateCopy
-        }
-
+    switch (action.type) {
+        case (ADD_POST):
+            let newPost = {
+                id: 8,
+                massage: state.newPostText,
+                like: 6
+            }
+            if (newPost.massage == '') {
+                alert('вы не можете отправить пустое сообщение')
+            }
+            else {
+                return {
+                    ...state,
+                    posts: [...state.posts, newPost],
+                    newPostText: ''
+                }
+            }
+        case (UPDATE_NEW_POST_TEXT):
+            return ({
+                ...state,
+                newPostText: action.newText
+            })
+        default: return state
     }
-    else if (action.type === UPDATE_NEW_POST_TEXT) {
-        let StateCopy = { ...state}
-        StateCopy.newPostText = action.newText
-        return StateCopy
-    }
-
-    return state;
 }
+
 export const addPostActionCreator = () => {
     return {
         type: ADD_POST
