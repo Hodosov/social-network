@@ -1,7 +1,7 @@
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UODATE-NEW-POST-TEXT'
 
-let initialState =  {
+let initialState = {
     posts: [
         { id: 1, massage: 'Hello man', like: 2 },
         { id: 2, massage: 'Yo, how are your?', like: 4 },
@@ -22,19 +22,24 @@ export const profileReducer = (state = initialState, action) => {
             massage: state.newPostText,
             like: 6
         }
-        if(newPost.massage == ''){
+        if (newPost.massage == '') {
             alert('вы не можете отправить пустое сообщение')
-        } 
+        }
         else {
-                  state.posts.push(newPost)
-       state.newPostText = '' 
+            let StateCopy = { ...state}
+            StateCopy.posts = [ ...state.posts]
+            StateCopy.posts.push(newPost)
+            StateCopy.newPostText = ''
+            return StateCopy
         }
 
     }
     else if (action.type === UPDATE_NEW_POST_TEXT) {
-        state.newPostText = action.newText
+        let StateCopy = { ...state}
+        StateCopy.newPostText = action.newText
+        return StateCopy
     }
-    
+
     return state;
 }
 export const addPostActionCreator = () => {
