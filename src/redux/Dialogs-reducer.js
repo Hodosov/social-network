@@ -1,7 +1,7 @@
 const ADD_NEW_MASSAGE = 'ADD_NEW_MASSAGE'
 const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEX'
 
-let initState = {
+let initialState = {
     dialogs: [
         { id: 1, name: 'Rodert' },
         { id: 2, name: 'Marina' },
@@ -21,7 +21,7 @@ let initState = {
     newMassageText: ''
 }
 
-export const dialogReducer = (state = initState, action) => {
+export const dialogReducer = (state = initialState, action) => {
     switch (action.type) {
         case (ADD_NEW_MASSAGE):
 

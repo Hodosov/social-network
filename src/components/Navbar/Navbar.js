@@ -43,6 +43,9 @@ export const Navabr = () => {
                 <Link to='/dialogs'>Massages</Link>
             </Div>
             <Div>
+                <Link to='/users'>Find Users</Link>
+            </Div>
+            <Div>
                 <Link to='/news'>News</Link>
             </Div>
             <Div>

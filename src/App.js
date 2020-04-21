@@ -6,10 +6,12 @@ import { Navabr } from './components/Navbar/Navbar';
 import { Profile } from './components/Profile/Profile';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { Route } from 'react-router-dom';
+import { UsersContainer } from './components/Users/UsersContainer';
 
 const Body = styled.div`
     display: flex;
     justify-content: center;
+    height: 100%;
 `
 
 const AppWrapper = styled.div`
@@ -31,6 +33,7 @@ export const App = () => {
                 <Navabr />
                 <Route path='/profile' render={() => <Profile />} />
                 <Route path='/dialogs' render={() => <DialogsContainer />} />
+                <Route path='/users'  render={() => <UsersContainer />}/>
             </AppWrapper>
         </Body>
     );
