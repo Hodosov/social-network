@@ -11,7 +11,7 @@ const Content = styled.div`
 export const Profile = (props) => {
     return (
         <Content>
-            <Profileinfo />
+            <Profileinfo profile={props.profile} />
             <MypostsContainer />
         </Content>
     )

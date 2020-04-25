@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UODATE-NEW-POST-TEXT'
+const SET_USERS_PROFILE = 'SET_USERS_PROFILE'
 
 let initialState = {
     posts: [
@@ -11,7 +12,8 @@ let initialState = {
         { id: 6, massage: 'Go hoome', like: 5 },
         { id: 7, massage: 'Working REACT', like: 15 },
     ],
-    newPostText: 'Send post'
+    newPostText: 'Send post',
+    profile: null
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -37,6 +39,12 @@ export const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.newText
             })
+
+            case SET_USERS_PROFILE:
+                return {
+                    ...state, profile: action.profile
+                }
+
         default: return state
     }
 }
@@ -53,3 +61,5 @@ export const updateNewPostTextActionCreator = (text) => {
         newText: text
     }
 }
+
+export const setUserProfile = (profile) => ({ type: SET_USERS_PROFILE, profile })

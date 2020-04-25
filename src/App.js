@@ -3,10 +3,10 @@ import './App.css';
 import styled from 'styled-components';
 import Header from './components/Header/Header'
 import { Navabr } from './components/Navbar/Navbar';
-import { Profile } from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/Profileinfo/profileContainer';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { Route } from 'react-router-dom';
-import { UsersContainer } from './components/Users/UsersContainer';
+import { UsersContainer }  from './components/Users/UsersContainer';
 
 const Body = styled.div`
     display: flex;
@@ -31,7 +31,7 @@ export const App = () => {
             <AppWrapper>
                 <Header />
                 <Navabr />
-                <Route path='/profile' render={() => <Profile />} />
+                <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
                 <Route path='/dialogs' render={() => <DialogsContainer />} />
                 <Route path='/users'  render={() => <UsersContainer />}/>
             </AppWrapper>
