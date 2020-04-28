@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const Headers = styled.header`
     grid-area: h;
@@ -12,10 +13,17 @@ const Images = styled.img`
     padding: 5px 40px;
 `
 
-const Header = () => {
+const Div = styled.div`
+    display: flex;
+`
+
+const Header = (props) => {
     return (
         <Headers>
+            <Div>
             <Images src='http://yoomark.com/sites/default/files/field/image/react-technologies-9ce31d51432424bcd4626f5f730580f3cddc9c211c1577e9950138550233542a_0.png' />
+              { props.isAuth ? props.login : <NavLink to={'/login'}>LOGIN</NavLink>      }              
+            </Div>
         </Headers>
     )
 }

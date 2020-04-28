@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import styled from 'styled-components';
-import Header from './components/Header/Header'
+import HeaderContainer from './components/Header/HeaderContainer'
 import { Navabr } from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/Profileinfo/profileContainer';
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
@@ -29,7 +29,7 @@ export const App = () => {
     return (
         <Body>
             <AppWrapper>
-                <Header />
+                <HeaderContainer />
                 <Navabr />
                 <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
                 <Route path='/dialogs' render={() => <DialogsContainer />} />
