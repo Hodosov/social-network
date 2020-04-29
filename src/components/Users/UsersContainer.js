@@ -1,18 +1,12 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { Users } from './users'
-import * as axios from 'axios'
-import { follow, 
-    unfollow, 
-    setUsers, 
+import {  follow, unfollow,
     setCurrentPage, 
-    setTotalUsersCount, 
-    toggleIsFetching, 
     toggleIsFollowingProgress,
-    GetUsersThunkCreator
+    GetUsers
 } from '../../redux/Users-reducer'
 import styled from 'styled-components';
-import { usersAPI } from '../../api/api'
 
 const Img = styled.img`
     width: 100px;
@@ -21,26 +15,11 @@ const Img = styled.img`
 class UsersContainers extends React.Component {
 
     componentDidMount() {
-
-        // GetUsersThunkCreator(this.props.currentPage ,this.props.pageSize)
-
-        this.props.toggleIsFetching(true)
-
-        usersAPI.getUsers( this.props.currentPage ,this.props.pageSize).then(response => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(response.items)
-                this.props.setTotalUsersCount(response.totalCount)
-            })
+        this.props.GetUsers(this.props.currentPage ,this.props.pageSize)
         }
 
     onPageChanged = (p) => {
-        this.props.setCurrentPage(p)
-        this.props.toggleIsFetching(true)
-        
-        usersAPI.getUsers(p ,this.props.pageSize).then(response => {
-            this.props.toggleIsFetching(false)
-            this.props.setUsers(response.items)
-        })
+        this.props.GetUsers(p ,this.props.pageSize)
     }
 
     render() {
@@ -73,43 +52,10 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-
-//         unfollow: (userId) => {
-//             dispatch(unfollowAC(userId))
-//         },
-
-
-//         follow: (userId) => {
-//             dispatch(followAC(userId))
-//         },
-
-//         setUsers: (userId) => {
-//             dispatch(setUsersAC(userId))
-//         },
-
-//         setCurrentPage: (pageNumber) => {
-//             dispatch(setCurrentPageAC(pageNumber))
-//         },
-
-//         setTotalUsersCount: (totalCoutn) => {
-//             dispatch(setTotalUsersCountAC(totalCoutn))
-//         },
-
-//         toggleIsFetching: (isFetching) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//     }
-// }
-
-
 export let UsersContainer = connect(mapStateToProps, {
     unfollow,
-    follow,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
-    toggleIsFollowingProgress,
+    follow,   
+    setCurrentPage,    
+    toggleIsFollowingProgress, 
+    GetUsers
 })(UsersContainers)

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios'
 
 const Wrapper = styled.div`
     display: flex;
@@ -41,41 +40,15 @@ export let Users = (props) => {
                     </NavLink>
                 </div>
                 <div>
-                    {el.followed === true
+                    {el.followed
                         ? <button 
                         disabled={props.followingInProgress.some(id => id === el.id)} 
-                        onClick={() => {
-                            props.toggleIsFollowingProgress(true)
-                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {
-                                  withCredentials: true,
-                                  headers: {
-                                      'API-KEY': '67312575-91c7-43fb-820c-3acb5dba8dbf'
-                                  }
-                            })
-                            .then(response => {
-                                if(response.data.resultCode === 0){
-                                    props.unfollow(el.id)
-                                }
-                            })
-                            props.toggleIsFollowingProgress(false, el.id)
-                        }} >UNFOLLOW</button>
+                        onClick={() => props.unfollow(el.id)    
+                        } >UNFOLLOW</button>
                         : <button 
                         disabled={props.followingInProgress.some(id => id === el.id)} 
-                        onClick={() => {
-                            props.toggleIsFollowingProgress(true, el.id)
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`, {}, {
-                                  withCredentials: true,
-                                  headers: {
-                                    'API-KEY': '67312575-91c7-43fb-820c-3acb5dba8dbf'
-                                }
-                            })
-                            .then(response => {
-                                if(response.data.resultCode === 0){
-                                    props.follow(el.id)
-                                }
-                            })
-                            props.toggleIsFollowingProgress(false, el.id)
-                        }} >FOLLOW</button>}
+                        onClick={() => props.follow(el.id)
+                        } >FOLLOW</button>}
                 </div>
             </div>
             <div>
