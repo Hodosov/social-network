@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Profile } from '../Profile'
-import * as axios from 'axios'
 import { connect } from 'react-redux'
 import { getUserProfile } from '../../../redux/Profile-reducer'
 import { withRouter } from 'react-router-dom'
-import { usersAPI } from '../../../api/api'
-
+import { Redirect } from 'react-router-dom';
 
 const Content = styled.div`
     grid-area: c;
@@ -25,6 +23,7 @@ class ProfileContainer extends React.Component  {
     }
 
     render(){
+        if(!this.props.auth) return <Redirect to={'/login'} />
     return (
         <Content>
             <Profile { ...this.props } profile={this.props.profile}/>
@@ -32,7 +31,10 @@ class ProfileContainer extends React.Component  {
     )}
 }
 
-let mapStateToProps = (state) => ({ profile: state.profilePage.profile})
+let mapStateToProps = (state) => ({ 
+    profile: state.profilePage.profile,
+    auth: state.auth.isAuth
+})
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 

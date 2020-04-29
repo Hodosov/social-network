@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 const Textrea = styled.textarea`
     resize: none;
@@ -49,6 +49,8 @@ const Massage = (props) => {
 
 export const Dialogs = (props) => {
 
+    
+
     let state = props.dialogsPage
 
     let dialogs = state.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
@@ -66,7 +68,7 @@ export const Dialogs = (props) => {
         
     }
 
-
+    if(!props.auth) return <Redirect to={'/login'} />
     return (
         <Wrapper>
             <UserName>

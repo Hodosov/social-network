@@ -1,11 +1,12 @@
 import React from 'react'
-import { addNewMassageAcrionCreator, updateNewMassageTextCreator } from '../../redux/Dialogs-reducer'
+import { addNewMassageActionCreator, updateNewMassageTextCreator } from '../../redux/Dialogs-reducer'
 import { Dialogs } from './Dialogs';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        auth: state.auth.isAuth
     }
 }
 
@@ -16,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 
         },
         addNewMessage: () => {
-            dispatch(addNewMassageAcrionCreator());
+            dispatch(addNewMassageActionCreator());
         }
     }
 }

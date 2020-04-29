@@ -7,6 +7,7 @@ import ProfileContainer from './components/Profile/Profileinfo/profileContainer'
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { Route } from 'react-router-dom';
 import { UsersContainer }  from './components/Users/UsersContainer';
+import { Login } from './login/login'
 
 const Body = styled.div`
     display: flex;
@@ -34,6 +35,7 @@ export const App = () => {
                 <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
                 <Route path='/dialogs' render={() => <DialogsContainer />} />
                 <Route path='/users'  render={() => <UsersContainer />}/>
+                <Route path='/login'  render={() => <Login />}/>
             </AppWrapper>
         </Body>
     );

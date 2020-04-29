@@ -48,7 +48,7 @@ export const dialogReducer = (state = initialState, action) => {
     }
 }
 
-export const addNewMassageAcrionCreator = () => {
+export const addNewMassageActionCreator = () => {
     return {
         type: ADD_NEW_MASSAGE
     }
