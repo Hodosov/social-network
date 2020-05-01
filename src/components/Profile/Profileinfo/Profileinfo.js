@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { ProfileStatus } from './ProfileStatus'
 
 const Imgs = styled.img`
 height: 200px;
@@ -14,9 +15,9 @@ export const Profileinfo = (props) => {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 <Imgs src='https://i.artfile.ru/3840x1200_524734_[www.ArtFile.ru].jpg' />
-            </div>
+            </div> */}
             <div>
                 <img src={props.profile.photos.large} />
                 <div>
@@ -24,7 +25,7 @@ export const Profileinfo = (props) => {
                     <div>
                         {props.profile.fullName} 
                     </div>
-
+                    <ProfileStatus  status='hello world'/>
                 </div>
             </div>
         </div>
