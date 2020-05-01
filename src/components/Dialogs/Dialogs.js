@@ -49,8 +49,6 @@ const Massage = (props) => {
 
 export const Dialogs = (props) => {
 
-    
-
     let state = props.dialogsPage
 
     let dialogs = state.dialogs.map(el => <DialogItem key={el.id} id={el.id} name={el.name} />)
@@ -65,7 +63,6 @@ export const Dialogs = (props) => {
     let onChangeMassage = () => {
         let message = newMassageElement.current.value
         props.updateMessage(message)
-        
     }
 
     if(!props.auth) return <Redirect to={'/login'} />
@@ -88,7 +85,6 @@ export const Dialogs = (props) => {
                 >Отправить</button>
             </div>
             </Massages>
-        
         </Wrapper>
     )
 }
