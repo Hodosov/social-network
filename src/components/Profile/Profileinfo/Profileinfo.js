@@ -25,7 +25,7 @@ export const Profileinfo = (props) => {
                     <div>
                         {props.profile.fullName} 
                     </div>
-                    <ProfileStatus  status='hello world'/>
+                    <ProfileStatus  status={props.status}/>
                 </div>
             </div>
         </div>
