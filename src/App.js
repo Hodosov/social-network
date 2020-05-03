@@ -8,6 +8,7 @@ import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { Route } from 'react-router-dom';
 import { UsersContainer }  from './components/Users/UsersContainer';
 import { Login } from './login/login'
+import { Chart } from './components/news/news';
 
 const Body = styled.div`
     display: flex;
@@ -36,6 +37,7 @@ export const App = () => {
                 <Route path='/dialogs' render={() => <DialogsContainer />} />
                 <Route path='/users'  render={() => <UsersContainer />}/>
                 <Route path='/login'  render={() => <Login />}/>
+                <Route path='/news' render={() => <Chart />} />
             </AppWrapper>
         </Body>
     );
