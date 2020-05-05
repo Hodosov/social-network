@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { NavLink, Redirect } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
 
 const Textrea = styled.textarea`
     resize: none;
@@ -55,14 +56,8 @@ export const Dialogs = (props) => {
 
     let massages = state.massages.map(el => <Massage key={el.id} massage={el.massage} />)
 
-    let newMassageElement = React.createRef()
-
-    let addMassage = () => {
-        props.addNewMessage()
-    }
-    let onChangeMassage = () => {
-        let message = newMassageElement.current.value
-        props.updateMessage(message)
+       let addNewMassage = (values) => {
+        props.addNewMessage(values.newMassageBody)
     }
 
     if(!props.auth) return <Redirect to={'/login'} />
@@ -74,17 +69,22 @@ export const Dialogs = (props) => {
             <Massages>
                 {massages}
                     <div>
-                <Textrea
-                onChange={onChangeMassage}
-                ref={newMassageElement}
-                value={state.newMassageText}
-                placeholder='введите сообщение'
-                ></Textrea>
-                <button
-                onClick={addMassage}
-                >Отправить</button>
+                <AddMassageFormRedux onSubmit={addNewMassage}/>
             </div>
             </Massages>
         </Wrapper>
     )
 }
+
+const AddMassageForm = (props) => {
+    return(
+        <form onSubmit={props.handleSubmit}>
+            <Field component='textarea' name='newMassageBody'
+            placeholder='введите сообщение'/>
+                <button>Отправить</button>
+        </form>
+    )
+}
+const AddMassageFormRedux = reduxForm({
+    form: 'dialogAddMassageForm'
+})(AddMassageForm)

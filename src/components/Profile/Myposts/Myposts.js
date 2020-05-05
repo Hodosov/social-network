@@ -1,8 +1,9 @@
 import React from 'react'
 import Post from './post/Post'
 import styled from 'styled-components';
+import { reduxForm, Field } from 'redux-form';
 
-const Textrea = styled.textarea`
+const Textarea = styled(Field)`
     resize: none;
     width: 520px;
     height: 60px;
@@ -18,16 +19,10 @@ const PostsCollumn = styled.div`
 export const Myposts = (props) => {
     let post = props.posts.map(el => <Post key={el.id} massage={el.massage} like={el.like} />);
 
-    let newPOstElement = React.createRef()
-
-    let onAddPost = () =>{
-        props.addPost()
+    let onAddPost = (values) =>{
+        props.addPost(values.AddNewPostTextForm)
+        console.log(values.AddNewPostTextForm)
     } 
-
-    let onPostChange = () =>{
-        let text = newPOstElement.current.value
-        props.updataNewpostText(text)
-    }
 
     return (
         <div>
@@ -35,13 +30,7 @@ export const Myposts = (props) => {
                 <h3>my post</h3>
         </div>
         <div>
-            <div>
-                <Textrea 
-                onChange={onPostChange}
-                ref={newPOstElement} 
-                value={props.newPostText}/>
-            </div>
-            <button onClick={ onAddPost }>add post</button>
+              <AddNewPostForm onSubmit={onAddPost}/>
          </div>
          <PostsCollumn>
               { post }            
@@ -49,3 +38,17 @@ export const Myposts = (props) => {
         </div>
     )
 }
+
+const AddNewProfilePostForm = (props) => {
+    return(
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field name='AddNewPostTextForm'
+                component='textarea'/>
+            </div>
+            <button>add post</button>
+        </form>
+    )
+}
+
+const AddNewPostForm = reduxForm({form: 'AddNewPostForms'})(AddNewProfilePostForm)

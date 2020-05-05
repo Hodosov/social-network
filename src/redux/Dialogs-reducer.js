@@ -1,5 +1,4 @@
 const ADD_NEW_MASSAGE = 'ADD_NEW_MASSAGE'
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE_NEW_MASSAGE_TEX'
 
 let initialState = {
     dialogs: [
@@ -18,7 +17,6 @@ let initialState = {
         { id: 5, massage: 'Go kino' },
         { id: 6, massage: 'Go hoome' },
     ],
-    newMassageText: ''
 }
 
 export const dialogReducer = (state = initialState, action) => {
@@ -27,37 +25,22 @@ export const dialogReducer = (state = initialState, action) => {
 
             let newMassage = {
                 id: 8,
-                massage: state.newMassageText
+                massage: action.newMassageText
             }
             if (newMassage.massage === '') {
                 alert('Введите сообщение')
             } else {
                 return { 
                     ...state,
-                    newMassageText: '',
-                    massages: [ ...state.massages, newMassage ],
+                    massages: [ ...state.massages, newMassage ],                    
                 }
             }
-
-        case (UPDATE_NEW_MASSAGE_TEXT):
-            return ({ 
-                ...state,
-                newMassageText: action.newMassageText
-            })
         default: return state
     }
 }
 
-export const addNewMassageActionCreator = () => {
+export const addNewMassageActionCreator = (newMassageText) => {
     return {
-        type: ADD_NEW_MASSAGE
+        type: ADD_NEW_MASSAGE, newMassageText
     }
 }
-
-export const updateNewMassageTextCreator = (text) => {
-    return {
-        type: UPDATE_NEW_MASSAGE_TEXT,
-        newMassageText: text
-    }
-}
-

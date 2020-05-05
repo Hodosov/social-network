@@ -1,10 +1,8 @@
 import { usersAPI, profileApi } from '../api/api'
 
 const ADD_POST = 'ADD_POST'
-const UPDATE_NEW_POST_TEXT = 'UODATE-NEW-POST-TEXT'
 const SET_USERS_PROFILE = 'SET_USERS_PROFILE'
 const SET_STATUS = 'SET_STATUS'
-const UPDATE_STATUS = 'UPDATE_STATUS'
 
 let initialState = {
     posts: [
@@ -16,7 +14,6 @@ let initialState = {
         { id: 6, massage: 'Go hoome', like: 5 },
         { id: 7, massage: 'Working REACT', like: 15 },
     ],
-    newPostText: 'Send post',
     profile: null,
     status: ''
 }
@@ -26,7 +23,7 @@ export const profileReducer = (state = initialState, action) => {
         case (ADD_POST):
             let newPost = {
                 id: 8,
-                massage: state.newPostText,
+                massage: action.AddNewPostForm,
                 like: 6
             }
             if (newPost.massage == '') {
@@ -36,15 +33,9 @@ export const profileReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     posts: [...state.posts, newPost],
-                    newPostText: ''
                 }
             }
-        case (UPDATE_NEW_POST_TEXT):
-            return ({
-                ...state,
-                newPostText: action.newText
-            })
-
+     
         case SET_USERS_PROFILE:
             return {
                 ...state, profile: action.profile
@@ -59,16 +50,9 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (AddNewPostForm) => {
     return {
-        type: ADD_POST
-    }
-}
-
-export const updateNewPostTextActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text
+        type: ADD_POST, AddNewPostForm
     }
 }
 
