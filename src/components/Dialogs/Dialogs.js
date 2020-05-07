@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 import { NavLink, Redirect } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { TextArea } from '../common/FormsControl'
+import { required, maxLengthCreator } from '../../utils/validators'
 
 const Textrea = styled.textarea`
     resize: none;
@@ -76,11 +78,15 @@ export const Dialogs = (props) => {
     )
 }
 
+const maxLength = maxLengthCreator(15)
+
 const AddMassageForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
-            <Field component='textarea' name='newMassageBody'
-            placeholder='введите сообщение'/>
+            <Field component={TextArea} 
+            name='newMassageBody'
+            placeholder='введите сообщение'
+            validate={required, maxLength}/>
                 <button>Отправить</button>
         </form>
     )

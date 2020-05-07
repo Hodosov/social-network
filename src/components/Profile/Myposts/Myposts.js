@@ -2,6 +2,8 @@ import React from 'react'
 import Post from './post/Post'
 import styled from 'styled-components';
 import { reduxForm, Field } from 'redux-form';
+import { required, maxLengthCreator } from '../../../utils/validators'
+import { TextArea } from '../../common/FormsControl'
 
 const Textarea = styled(Field)`
     resize: none;
@@ -39,12 +41,17 @@ export const Myposts = (props) => {
     )
 }
 
+
+const maxLength = maxLengthCreator(10)
+
 const AddNewProfilePostForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
             <div>
                 <Field name='AddNewPostTextForm'
-                component='textarea'/>
+                component={TextArea}
+                placeholder={'send message'}
+                validate={[required, maxLength]}/>
             </div>
             <button>add post</button>
         </form>
