@@ -7,8 +7,8 @@ import ProfileContainer from './components/Profile/Profileinfo/profileContainer'
 import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { Route } from 'react-router-dom';
 import { UsersContainer }  from './components/Users/UsersContainer';
-import { Login } from './login/login'
 import { Chart } from './components/news/news';
+import Login from './login/login'
 
 const Body = styled.div`
     display: flex;

@@ -2,11 +2,26 @@ import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { InputForm } from '../components/common/FormsControl'
 import { required, maxLengthCreator } from '../utils/validators'
+import { connect } from 'react-redux'
+import { login } from '../redux/authReducer'
+import { Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
-export const Login = (props) => {
+const FormError = styled.div`
+    border: red 1px solid;
+    padding:5px;
+    color: red;
+    width: 240px;
+`
+
+const Login = (props) => {
 
     const onSubmit = (formData) => {
-        console.log(formData)
+        props.login(formData.email, formData.password, formData.rememberMe)
+    }
+
+    if(props.isAuth){
+        return <Redirect to={'/profile'}/>
     }
 
     return (
@@ -17,23 +32,27 @@ export const Login = (props) => {
     )
 }
 
-const maxLength = maxLengthCreator(15)
+const maxLength = maxLengthCreator(20)
 
 const LoginForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field placeholder={'login'} name={'login'} component={InputForm} 
+                    <Field placeholder={'login'} name={'email'} component={InputForm} 
                     validate={[required, maxLength]}/>
                 </div>
                 <div>
                     <Field placeholder={'password'} name={'password'} component={InputForm} 
-                    validate={[required, maxLength]}/>
+                    validate={[required, maxLength]} type='password'/>
                 </div>
                 <div>
                     <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> rememder me
             </div>
                 <div>
+                    { props.error &&
+                    <FormError>
+                        {props.error}
+                    </FormError>}
                     <button>Login</button>
                 </div>
             </form>
@@ -43,3 +62,9 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({
     form: 'login',
 })(LoginForm)
+
+const mapStateToProps =(state) => ({
+    isAuth: state.auth.isAuth
+})
+
+export default connect(mapStateToProps, {login})(Login)
