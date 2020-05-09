@@ -10,6 +10,12 @@ import {
 import styled from 'styled-components';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+import { getUsers, 
+    getPageSize, 
+    getTotalUsersCount, 
+    getCurrentPage, 
+    getIsFetching, 
+    getIsFollowInProgress} from '../../redux/UsersSelectors'
 
 const Img = styled.img`
     width: 100px;
@@ -45,12 +51,12 @@ class UsersContainers extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        users: state.userPage.users,
-        pageSize: state.userPage.pageSize,
-        totalUsersCount: state.userPage.totalUsersCount,
-        currentPage: state.userPage.currentPage,
-        isFetching: state.userPage.isFetching,
-        followingInProgress: state.userPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getIsFollowInProgress(state)
     }
 }
 
