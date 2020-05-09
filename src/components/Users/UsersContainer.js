@@ -62,5 +62,5 @@ export let UsersContainer = compose(
         toggleIsFollowingProgress,
         GetUsers
     }),
-    withAuthRedirect
+    // withAuthRedirect
 )(UsersContainers)

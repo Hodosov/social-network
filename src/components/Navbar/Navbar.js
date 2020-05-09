@@ -33,7 +33,7 @@ const Link = styled(NavLink)`
 
 `
 
-export const Navabr = () => {
+export const Navbar = () => {
     return (
         <Nav>
             <Div>
