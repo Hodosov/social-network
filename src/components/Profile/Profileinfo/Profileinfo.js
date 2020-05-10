@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { ProfileStatus } from './ProfileStatus'
+import { ProfileStatusWithHooks } from './ProfileStatusWithHooks'
 
 const Imgs = styled.img`
 height: 200px;
@@ -25,7 +25,7 @@ export const Profileinfo = (props) => {
                     <div>
                         {props.profile.fullName} 
                     </div>
-                    <ProfileStatus  status={props.status}
+                    <ProfileStatusWithHooks  status={props.status}
                     updateStatus={props.updateStatus}
                     />
                 </div>
