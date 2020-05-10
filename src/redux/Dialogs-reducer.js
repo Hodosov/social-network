@@ -27,14 +27,11 @@ export const dialogReducer = (state = initialState, action) => {
                 id: 8,
                 massage: action.newMassageText
             }
-            if (newMassage.massage === '') {
-                alert('Введите сообщение')
-            } else {
+            
                 return { 
                     ...state,
                     massages: [ ...state.massages, newMassage ],                    
                 }
-            }
         default: return state
     }
 }

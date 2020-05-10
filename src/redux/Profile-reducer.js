@@ -26,15 +26,10 @@ export const profileReducer = (state = initialState, action) => {
                 massage: action.AddNewPostForm,
                 like: 6
             }
-            if (newPost.massage == '') {
-                alert('вы не можете отправить пустое сообщение')
-            }
-            else {
                 return {
                     ...state,
                     posts: [...state.posts, newPost],
                 }
-            }
      
         case SET_USERS_PROFILE:
             return {
