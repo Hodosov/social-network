@@ -19,11 +19,11 @@ const PostsCollumn = styled.div`
     flex-direction: column-reverse;
 `
 export const Myposts = (props) => {
+
     let post = props.posts.map(el => <Post key={el.id} massage={el.massage} like={el.like} />);
 
     let onAddPost = (values) =>{
         props.addPost(values.AddNewPostTextForm)
-        console.log(values.AddNewPostTextForm)
     } 
 
     return (

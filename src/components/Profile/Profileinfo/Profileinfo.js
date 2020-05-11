@@ -14,10 +14,6 @@ export const Profileinfo = (props) => {
     }
 
     return (
-        <div>
-            {/* <div>
-                <Imgs src='https://i.artfile.ru/3840x1200_524734_[www.ArtFile.ru].jpg' />
-            </div> */}
             <div>
                 <img src={props.profile.photos.large} />
                 <div>
@@ -30,6 +26,5 @@ export const Profileinfo = (props) => {
                     />
                 </div>
             </div>
-        </div>
     )
 }

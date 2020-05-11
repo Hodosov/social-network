@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import styled from 'styled-components';
 import { Profileinfo } from './Profileinfo/Profileinfo';
 import { MypostsContainer } from '../Profile/Myposts/MypostsContainer'
@@ -8,7 +8,7 @@ const Content = styled.div`
     margin-top: 10px;
 `
 
-export const Profile = (props) => {
+export const Profile = React.memo((props) => {
     return (
         <Content>
             <Profileinfo 
@@ -18,4 +18,4 @@ export const Profile = (props) => {
             <MypostsContainer />
         </Content>
     )
-}
+})
