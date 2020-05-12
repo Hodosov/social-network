@@ -11,7 +11,7 @@ let initialState = {
         { id: 3, massage: 'I create SPA', like: 20 },
         { id: 4, massage: 'I go to the park', like: 3 },
         { id: 5, massage: 'its COOL', like: 2 },
-        { id: 6, massage: 'Go hoome', like: 5 },
+        { id: 6, massage: 'Go home', like: 5 },
         { id: 7, massage: 'Working REACT', like: 15 },
     ],
     profile: null,
@@ -55,22 +55,18 @@ export const setStatusAC = (status) => ({ type: SET_STATUS, status})
 
 export const setUserProfile = (profile) => ({ type: SET_USERS_PROFILE, profile })
 
-export const getUserProfile = (userId) => (dispatch) => {
-    usersAPI.getProfile(userId)
-        .then(response => {
+export const getUserProfile = (userId) => async (dispatch) => {
+    let response = await usersAPI.getProfile(userId)
             dispatch(setUserProfile(response.data))
-        })
 }
 
-export const setUsersStatus = (userId) => (dispatch) => {
-    profileApi.getStatus(userId).then(response => {
+export const setUsersStatus = (userId) => async (dispatch) => {
+    let response = await profileApi.getStatus(userId)
         dispatch(setStatusAC(response.data))
-    })
 }
 
-export const updateStatus = (status) => (dispatch) => {
-    profileApi.updateStatus(status).then(response => {
+export const updateStatus = (status) => async (dispatch) => {
+    let response = await profileApi.updateStatus(status)
         if(response.data.resultCode === 0){
         dispatch(setStatusAC(status))}
-    })
 }
