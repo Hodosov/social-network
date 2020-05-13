@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import './App.css';
 import styled from 'styled-components';
 import HeaderContainer from './components/Header/HeaderContainer'
 import { Navbar } from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/Profileinfo/profileContainer';
-import { DialogsContainer } from './components/Dialogs/DialogsContainer';
 import { Route, withRouter } from 'react-router-dom';
-import { UsersContainer } from './components/Users/UsersContainer';
+// import { UsersContainer } from './components/Users/UsersContainer';
 import { Chart } from './components/news/news';
 import Login from './login/login'
 import { initializeApp } from './redux/appReducer'
 import { connect } from 'react-redux'
 import { compose } from 'redux';
+import { withSuspense } from './hoc/withSuspense'
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'))
+
 
 const Body = styled.div`
     display: flex;
@@ -46,9 +50,10 @@ class App extends React.Component {
                 <AppWrapper>
                     <HeaderContainer />
                     <Navbar />
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-                    <Route path='/dialogs' render={() => <DialogsContainer />} />
-                    <Route path='/users' render={() => <UsersContainer />} />
+                    <Route path='/profile/:userId?' render={() =>
+                        <ProfileContainer />} />
+                    <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
+                    <Route path='/users' render={withSuspense(UsersContainer)} />
                     <Route path='/login' render={() => <Login />} />
                     <Route path='/news' render={() => <Chart />} />
                 </AppWrapper>

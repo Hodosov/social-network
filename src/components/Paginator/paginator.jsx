@@ -17,8 +17,6 @@ export let Pagination = ({totalUsersCount, pageSize, onPageChanged}) => {
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
 
-    console.log('render')
-
     return (
         <div>
             {portionNumber >1  && <button 
