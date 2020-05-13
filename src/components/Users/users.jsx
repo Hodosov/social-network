@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom';
+import { Pagination } from '../Paginator/paginator';
 
 const Wrapper = styled.div`
     display: flex;
@@ -18,9 +19,9 @@ let Avatar = styled.img`
     height: 100px;
 `
 
-export let Users = (props) => {
+export let Users = ({totalUsersCount, pageSize, followingInProgress, onPageChanged, users, follow, unfollow}) => {
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    const pagesCount = Math.ceil(totalUsersCount / pageSize)
 
 
     let pages = []
@@ -29,10 +30,10 @@ export let Users = (props) => {
     }
 
     return <Wrapper>
-        <div>
-            {pages.map(p => <button onClick={() => { props.onPageChanged(p) }}>{p}</button>)}
-        </div>
-        {props.users.map(el => <UserCard key={el.id}>
+        <Pagination totalUsersCount={totalUsersCount}
+        pageSize={pageSize}
+        onPageChanged={onPageChanged}/>
+        {users.map(el => <UserCard key={el.id}>
             <div>
                 <div>
                     <NavLink to={'/profile/' + el.id}>
@@ -42,12 +43,12 @@ export let Users = (props) => {
                 <div>
                     {el.followed
                         ? <button 
-                        disabled={props.followingInProgress.some(id => id === el.id)} 
-                        onClick={() => props.unfollow(el.id)    
+                        disabled={followingInProgress.some(id => id === el.id)} 
+                        onClick={() => unfollow(el.id)    
                         } >UNFOLLOW</button>
                         : <button 
-                        disabled={props.followingInProgress.some(id => id === el.id)} 
-                        onClick={() => props.follow(el.id)
+                        disabled={followingInProgress.some(id => id === el.id)} 
+                        onClick={() => follow(el.id)
                         } >FOLLOW</button>}
                 </div>
             </div>
