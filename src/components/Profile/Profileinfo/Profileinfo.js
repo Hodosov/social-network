@@ -2,27 +2,35 @@ import React from 'react'
 import styled from 'styled-components';
 import { ProfileStatusWithHooks } from './ProfileStatusWithHooks'
 
-const Imgs = styled.img`
-height: 200px;
-width: 100%;
+const Img = styled.img`
+height: 300px;
 `
 
-export const Profileinfo = (props) => {
+export const Profileinfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
 
-    if(!props.profile){
+    if(!profile){
         return <div>Loading...</div>
+    }
+
+    const onMainPhotoSelected = (e) => {
+        if(e.target.files.length){
+            savePhoto(e.target.files[0])
+        }
     }
 
     return (
             <div>
-                <img src={props.profile.photos.large} />
+                <Img src={profile.photos.large || 'https://avatars.mds.yandex.net/get-pdb/197794/a90b98f2-c084-4264-911f-266fbfc86b74/s1200'} />
                 <div>
-                    contacts: {props.profile.contacts.vk}
-                    <div>
-                        {props.profile.fullName} 
+                    {isOwner && <input type={'file'} onChange={(e) => onMainPhotoSelected(e)}/>}
                     </div>
-                    <ProfileStatusWithHooks  status={props.status}
-                    updateStatus={props.updateStatus}
+                <div>
+                    contacts: {profile.contacts.vk}
+                    <div>
+                        {profile.fullName} 
+                    </div>
+                    <ProfileStatusWithHooks  status={status}
+                    updateStatus={updateStatus}
                     />
                 </div>
             </div>

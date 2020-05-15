@@ -11,10 +11,12 @@ const Content = styled.div`
 export const Profile = React.memo((props) => {
     return (
         <Content>
-            <Profileinfo 
+            <Profileinfo
+            isOwner={props.isOwner}
             profile={props.profile} 
             status={props.status}
-            updateStatus={props.updateStatus}/>
+            updateStatus={props.updateStatus}
+            savePhoto={props.savePhoto}/>
             <MypostsContainer />
         </Content>
     )
