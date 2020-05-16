@@ -3,9 +3,13 @@ import { createField, InputForm, TextArea } from '../../common/FormsControl'
 import { reduxForm } from 'redux-form'
 import { Contact } from './Profileinfo'
 
-const ProfileFormData = ({ handleSubmit, profile }) => {
+const ProfileFormData = ({ handleSubmit, profile, error }) => {
     return <form onSubmit={handleSubmit}>
         <button onClick>save</button>
+        { error &&
+                    <div>
+                        {error}
+                    </div>}
         <div>
             <b>Full name</b> : {createField('Full name', 'fullName', [], InputForm)}
         </div>
