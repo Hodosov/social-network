@@ -1,9 +1,9 @@
 import React from 'react'
-import { Contact } from './Profileinfo'
 import { createField, InputForm, TextArea } from '../../common/FormsControl'
 import { reduxForm } from 'redux-form'
+import { Contact } from './Profileinfo'
 
-const ProfileFormData = ({ profile, handleSubmit }) => {
+const ProfileFormData = ({ handleSubmit, profile }) => {
     return <form onSubmit={handleSubmit}>
         <button onClick>save</button>
         <div>
@@ -16,9 +16,20 @@ const ProfileFormData = ({ profile, handleSubmit }) => {
             <b>My professional skills</b>:
             {createField('My professional skills', 'LookingForAJobDescription', [], TextArea)}
         </div>
+        <div>
+                <b>Contacts: </b> {Object.keys(profile.contacts).map(key => {
+                    return <div>
+                        <b>{key}</b> {createField(key, 'contacts.' + key, [], InputForm)}
+                    </div>
+                })}
+            </div>
+        <div>
+            <b>About me</b>: 
+            {createField('About me', 'aboutMe', [], TextArea)}
+        </div>
     </form>
 }
 
 export const ProfileDataReduxForm = reduxForm({
-    form: 'edit-profile',
+    form: 'profile',
 })(ProfileFormData)

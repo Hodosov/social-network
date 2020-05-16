@@ -23,6 +23,7 @@ export const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto,
 
     const onSubmit = (formData) => {
         saveProfile(formData)
+        setEditMode(false)
     }
 
     return (
@@ -36,6 +37,7 @@ export const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto,
                     {editMode 
                     ? <ProfileDataReduxForm 
                     onSubmit={onSubmit}
+                    initialValues={profile}
                     profile={profile}
                     stopEditMode={() => setEditMode(false)}/> 
                     :  <ProfileData profile={profile} 
@@ -61,12 +63,14 @@ const ProfileData = ({profile, isOwner, toEditMode}) => {
                 <b>Contacts</b> : {Object.keys(profile.contacts).map(key => {
                     return <Contact contactTitle={key} contactValue={profile.contacts[key]} />
                 })}
+                <b>About Me</b>: 
+                {profile.aboutMe}
             </div>
         </div>
     )
 }
 
 export const Contact = ({ contactTitle, contactValue }) => {
-    return <div><b>{contactTitle}</b>{contactValue}</div>
+    return <div><b>{contactTitle} </b>{contactValue}</div>
 }
 
