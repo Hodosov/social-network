@@ -55,5 +55,8 @@ export const  profileApi ={
                 'Content-Type': 'multipart/for-data'
             }
         })
+    },
+    saveProfile(data){
+        return instance.put('profile', data)
     }
 }

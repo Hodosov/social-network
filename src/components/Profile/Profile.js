@@ -1,6 +1,6 @@
-import React, {memo} from 'react'
+import React from 'react'
 import styled from 'styled-components';
-import { Profileinfo } from './Profileinfo/Profileinfo';
+import { ProfileInfo } from './Profileinfo/Profileinfo';
 import { MypostsContainer } from '../Profile/Myposts/MypostsContainer'
 
 const Content = styled.div`
@@ -11,12 +11,13 @@ const Content = styled.div`
 export const Profile = React.memo((props) => {
     return (
         <Content>
-            <Profileinfo
-            isOwner={props.isOwner}
-            profile={props.profile} 
-            status={props.status}
-            updateStatus={props.updateStatus}
-            savePhoto={props.savePhoto}/>
+            <ProfileInfo
+                isOwner={props.isOwner}
+                profile={props.profile}
+                status={props.status}
+                updateStatus={props.updateStatus}
+                savePhoto={props.savePhoto}
+                saveProfile={props.saveProfile} />
             <MypostsContainer />
         </Content>
     )

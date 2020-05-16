@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import { ProfileStatusWithHooks } from './ProfileStatusWithHooks'
-import { ProfileFormData } from './profileDataForm'
+import { ProfileDataReduxForm } from './profileDataForm'
 
 const Img = styled.img`
 height: 300px;
 `
 
-export const Profileinfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
+export const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfile }) => {
 
     const [editMode, setEditMode] = useState(false)
 
@@ -21,6 +21,10 @@ export const Profileinfo = ({ profile, status, updateStatus, isOwner, savePhoto 
         }
     }
 
+    const onSubmit = (formData) => {
+        saveProfile(formData)
+    }
+
     return (
         <div>
             <Img src={profile.photos.large || 'https://avatars.mds.yandex.net/get-pdb/197794/a90b98f2-c084-4264-911f-266fbfc86b74/s1200'} />
@@ -30,7 +34,8 @@ export const Profileinfo = ({ profile, status, updateStatus, isOwner, savePhoto 
             <div>
                 <div>
                     {editMode 
-                    ? <ProfileFormData 
+                    ? <ProfileDataReduxForm 
+                    onSubmit={onSubmit}
                     profile={profile}
                     stopEditMode={() => setEditMode(false)}/> 
                     :  <ProfileData profile={profile} 
