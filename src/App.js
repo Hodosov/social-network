@@ -1,11 +1,10 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import './App.css';
 import styled from 'styled-components';
 import HeaderContainer from './components/Header/HeaderContainer'
 import { Navbar } from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/Profileinfo/profileContainer';
 import { Route, withRouter } from 'react-router-dom';
-// import { UsersContainer } from './components/Users/UsersContainer';
 import { Chart } from './components/news/news';
 import Login from './login/login'
 import { initializeApp } from './redux/appReducer'
