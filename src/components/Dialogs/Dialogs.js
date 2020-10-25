@@ -38,6 +38,7 @@ const Link = styled(NavLink)`
         cursor: pointer;
     }
 `
+
 const DialogItem = (props) => {
     return (
         <Link to={'/dialogs/' + '#' + props.id}>{props.name}</Link>
