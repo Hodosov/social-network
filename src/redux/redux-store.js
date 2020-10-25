@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { profileReducer } from './Profile-reducer';
-import  { dialogReducer } from './Dialogs-reducer';
+import  { dialogReducer } from './dialogsReducer';
 import { UsersReducer } from "./Users-reducer";
 import { authReducer } from './authReducer';
 import { reducer as fromReducer } from 'redux-form'
