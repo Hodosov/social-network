@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {FC} from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom';
 import { Pagination } from '../Paginator/paginator';
+import { UsersType } from '../../types/types';
 
 const Wrapper = styled.div`
     display: flex;
@@ -19,7 +20,19 @@ let Avatar = styled.img`
     height: 100px;
 `
 
-export let Users = ({totalUsersCount, pageSize, followingInProgress, onPageChanged, users, follow, unfollow}) => {
+type PropsType = {
+    totalUsersCount: number
+    pageSize: number
+    followingInProgress: Array<number>
+    onPageChanged: (p: number) => void
+    users: Array<UsersType>
+    follow: (id: number) => void
+    unfollow: (id: number) => void
+    isFetching: boolean
+    toggleIsFollowingProgress: boolean
+}
+
+export let Users: FC<PropsType> = ({totalUsersCount, pageSize, followingInProgress, onPageChanged, users, follow, unfollow}) => {
 
     const pagesCount = Math.ceil(totalUsersCount / pageSize)
 

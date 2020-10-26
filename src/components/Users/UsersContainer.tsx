@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { Users } from './users'
+import { Users } from './Users'
 import {
     follow, unfollow,
     setCurrentPage,
@@ -16,18 +16,32 @@ import { getUsers,
     getCurrentPage, 
     getIsFetching, 
     getIsFollowInProgress} from '../../redux/UsersSelectors'
+import { UsersType } from '../../types/types';
 
 const Img = styled.img`
     width: 100px;
 `
 
-class UsersContainers extends React.Component {
+type PropsType = {
+    users: Array<UsersType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    GetUsers: (currentPage: number, pageSize: number) => void
+    isFetching: boolean
+    follow: (id: number) => void
+    unfollow: (id: number) => void
+    followingInProgress: Array<number>
+    toggleIsFollowingProgress: any
+}
+
+class UsersContainers extends React.Component<PropsType> {
 
     componentDidMount() {
         this.props.GetUsers(this.props.currentPage, this.props.pageSize)
     }
 
-    onPageChanged = (p) => {
+    onPageChanged = (p: number) => {
         this.props.GetUsers(p, this.props.pageSize)
     }
 
@@ -49,7 +63,7 @@ class UsersContainers extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: any) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),

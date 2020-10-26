@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 
-export let Pagination = ({ totalUsersCount, pageSize, onPageChanged }) => {
+type PropsType = {
+  totalUsersCount: number
+  pageSize: number
+  onPageChanged: (pageName: number) => void
+}
+
+export let Pagination: React.FC<PropsType> = ({ totalUsersCount, pageSize, onPageChanged }) => {
   const pagesCount = Math.ceil(totalUsersCount / pageSize);
 
-  let pages = [];
+  let pages: Array<number> = [];
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
