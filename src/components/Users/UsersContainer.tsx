@@ -17,6 +17,7 @@ import { getUsers,
     getIsFetching, 
     getIsFollowInProgress} from '../../redux/UsersSelectors'
 import { UsersType } from '../../types/types';
+import { AppStateType } from '../../redux/redux-store';
 
 const Img = styled.img`
     width: 100px;
@@ -63,7 +64,7 @@ class UsersContainers extends React.Component<PropsType> {
     }
 }
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
