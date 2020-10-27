@@ -29,7 +29,6 @@ type PropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
     isFetching: boolean
-    toggleIsFollowingProgress: boolean
 }
 
 export let Users: FC<PropsType> = ({totalUsersCount, pageSize, followingInProgress, onPageChanged, users, follow, unfollow}) => {

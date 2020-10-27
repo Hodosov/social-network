@@ -23,18 +23,24 @@ const Img = styled.img`
     width: 100px;
 `
 
-type PropsType = {
+
+
+type MapStatePropType = {
     users: Array<UsersType>
     pageSize: number
     totalUsersCount: number
+    followingInProgress: Array<number>
     currentPage: number
-    GetUsers: (currentPage: number, pageSize: number) => void
     isFetching: boolean
+}
+
+type MapDispatchPropType = {
+    GetUsers: (currentPage: number, pageSize: number) => void
     follow: (id: number) => void
     unfollow: (id: number) => void
-    followingInProgress: Array<number>
-    toggleIsFollowingProgress: any
 }
+
+type PropsType = MapStatePropType & MapDispatchPropType
 
 class UsersContainers extends React.Component<PropsType> {
 
@@ -57,14 +63,13 @@ class UsersContainers extends React.Component<PropsType> {
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
                 isFetching={this.props.isFetching}
-                toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                 followingInProgress={this.props.followingInProgress}
             /></div>
 
     }
 }
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: AppStateType): MapStatePropType => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
