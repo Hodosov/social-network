@@ -9,7 +9,6 @@ import {
 } from '../../redux/Users-reducer'
 import styled from 'styled-components';
 import { compose } from 'redux';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { getUsers, 
     getPageSize, 
     getTotalUsersCount, 
