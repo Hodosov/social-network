@@ -17,7 +17,6 @@ export const appReducer = (state = initialState, action: initializedSuccessType)
                 ...state,
                 initialized: true
             })
-            break;
         default:
             return state
     }

@@ -5,15 +5,6 @@ import { reduxForm, Field } from 'redux-form';
 import { required, maxLengthCreator } from '../../../utils/validators'
 import { TextArea } from '../../common/FormsControl'
 
-const Textarea = styled(Field)`
-    resize: none;
-    width: 520px;
-    height: 60px;
-    border: solid;
-    border-radius: 10px;
-    border-color: #C9F4F1;
-`
-
 const PostsCollumn = styled.div`
     display: flex;
     flex-direction: column-reverse;

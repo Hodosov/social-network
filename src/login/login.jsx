@@ -49,7 +49,7 @@ const LoginForm = ({handleSubmit, error, captcha}) => {
                     <Field type={'checkbox'} name={'rememberMe'} component={'input'} /> remember me
             </div>
                 <div>
-                    {captcha && <img src={captcha.captchaUrl} />}
+                    {captcha && <img src={captcha.captchaUrl} alt="" />}
                     {captcha && createField('Symbols from img', 'captcha', [required], InputForm, {})}
                     { error &&
                     <FormError>

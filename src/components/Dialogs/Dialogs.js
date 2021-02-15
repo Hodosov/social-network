@@ -5,15 +5,6 @@ import { Field, reduxForm } from 'redux-form';
 import { TextArea } from '../common/FormsControl'
 import { required, maxLengthCreator } from '../../utils/validators'
 
-const Textrea = styled.textarea`
-    resize: none;
-    width: 520px;
-    height: 60px;
-    border: solid;
-    border-radius: 10px;
-    border-color: #C9F4F1;
-`
-
 const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 2fr 10fr;
@@ -41,7 +32,7 @@ const Link = styled(NavLink)`
 
 const DialogItem = (props) => {
     return (
-        <Link to={'/dialogs/' + '#' + props.id}>{props.name}</Link>
+        <Link to={`/dialogs/#${props.id}`}>{props.name}</Link>
     )
 }
 
